@@ -374,6 +374,306 @@ footer {
   .stats-grid{ grid-template-columns:1fr 1fr; }
 }
 
+/* ══════════════════════════════════
+   LAB SECTION
+══════════════════════════════════ */
+#lab {
+  padding:8rem 5rem;
+  background:var(--dark);
+  position:relative;
+  overflow:hidden;
+}
+#lab::before {
+  content:'';
+  position:absolute;
+  top:-150px; right:-180px;
+  width:600px; height:600px;
+  background:radial-gradient(circle, rgba(120,75,160,0.14) 0%, transparent 70%);
+  filter:blur(60px);
+  pointer-events:none;
+}
+#lab::after {
+  content:'';
+  position:absolute;
+  bottom:-100px; left:-120px;
+  width:500px; height:500px;
+  background:radial-gradient(circle, rgba(255,60,172,0.1) 0%, transparent 70%);
+  filter:blur(60px);
+  pointer-events:none;
+}
+.lab-inner { max-width:1060px; margin:0 auto; position:relative; z-index:1; }
+
+.lab-eyebrow {
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:0.75rem; font-weight:800; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--cyan); margin-bottom:0.75rem;
+}
+.lab-dot {
+  width:7px; height:7px; border-radius:50%;
+  background:var(--pink); box-shadow:0 0 8px var(--pink);
+  animation:blink 2s ease infinite;
+}
+.lab-title {
+  font-family:'Fraunces',serif;
+  font-size:clamp(2.2rem,4vw,3.2rem);
+  font-weight:900; line-height:1.1;
+  letter-spacing:-0.02em; color:white;
+  margin-bottom:0.6rem;
+}
+.lab-title em { font-style:italic; color:var(--pink); -webkit-text-fill-color:var(--pink); }
+.lab-desc {
+  color:rgba(255,255,255,0.42);
+  font-size:1rem; line-height:1.8; font-weight:300;
+  max-width:520px; margin-bottom:2.5rem;
+}
+
+/* filters */
+.lab-filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:2rem; }
+.lab-filter {
+  padding:7px 18px; border-radius:99px;
+  border:1px solid rgba(255,255,255,0.1);
+  font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:700;
+  letter-spacing:0.04em; text-transform:uppercase;
+  cursor:pointer; background:transparent; color:rgba(255,255,255,0.45);
+  transition:all 0.18s;
+}
+.lab-filter:hover { border-color:var(--cyan); color:var(--cyan); }
+.lab-filter.lf-active {
+  background:linear-gradient(135deg,var(--pink),var(--violet));
+  border-color:transparent; color:white;
+}
+
+/* cards */
+.lab-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(260px,1fr));
+  gap:1.1rem; margin-bottom:1.25rem;
+}
+.lab-card {
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:1.5rem; padding:1.5rem;
+  cursor:pointer;
+  transition:transform 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  position:relative; overflow:hidden;
+}
+.lab-card::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg, rgba(255,60,172,0.04) 0%, transparent 60%);
+  opacity:0; transition:opacity 0.2s;
+}
+.lab-card:hover { transform:translateY(-4px); border-color:rgba(255,255,255,0.14); box-shadow:0 12px 32px rgba(0,0,0,0.35); }
+.lab-card:hover::before { opacity:1; }
+.lab-card.lc-selected { border:1.5px solid var(--pink); box-shadow:0 0 0 3px rgba(255,60,172,0.15), 0 12px 32px rgba(0,0,0,0.35); }
+
+.lc-tag {
+  display:inline-block;
+  font-size:0.67rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  padding:3px 10px; border-radius:99px; margin-bottom:0.9rem;
+}
+.lt-ai       { background:rgba(120,75,160,0.18); color:#c4a8e8; border:1px solid rgba(120,75,160,0.3); }
+.lt-data     { background:rgba(0,212,255,0.12);  color:#7aedff;  border:1px solid rgba(0,212,255,0.25); }
+.lt-marketing{ background:rgba(255,60,172,0.12); color:#ff8ad4;  border:1px solid rgba(255,60,172,0.25); }
+.lt-creative { background:rgba(198,241,53,0.09); color:#d8f76a;  border:1px solid rgba(198,241,53,0.2); }
+
+.lc-title { font-family:'Outfit',sans-serif; font-weight:700; font-size:0.98rem; color:white; margin-bottom:0.45rem; line-height:1.4; }
+.lc-body  { font-size:0.83rem; color:rgba(255,255,255,0.42); line-height:1.7; }
+.lc-footer { display:flex; align-items:center; gap:7px; margin-top:1rem; }
+.lc-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.ld-building { background:var(--yellow); box-shadow:0 0 6px rgba(255,225,52,0.5); }
+.ld-live     { background:var(--lime);   box-shadow:0 0 6px rgba(198,241,53,0.5); }
+.ld-planned  { background:rgba(255,255,255,0.2); }
+.lc-status { font-size:0.75rem; color:rgba(255,255,255,0.3); font-weight:600; }
+
+/* add button */
+.lab-add-btn {
+  width:100%; padding:15px;
+  border:1.5px dashed rgba(255,255,255,0.1); border-radius:1.5rem;
+  font-family:'Outfit',sans-serif; font-size:0.88rem; font-weight:600;
+  color:rgba(255,255,255,0.28); cursor:pointer; background:transparent;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  transition:all 0.18s; margin-bottom:3.5rem;
+}
+.lab-add-btn:hover { border-color:rgba(255,60,172,0.4); color:var(--pink); }
+
+.lab-divider {
+  border:none; border-top:1px solid rgba(255,255,255,0.06); margin-bottom:3.5rem;
+}
+
+/* generator */
+.gen-panel {
+  background:rgba(255,255,255,0.025);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:2rem; padding:2.5rem;
+  position:relative; overflow:hidden;
+}
+.gen-panel::before {
+  content:''; position:absolute;
+  top:-80px; right:-80px;
+  width:300px; height:300px;
+  background:radial-gradient(circle, rgba(255,60,172,0.1) 0%, transparent 70%);
+  pointer-events:none;
+}
+.gen-head { display:flex; align-items:flex-start; gap:16px; margin-bottom:1.75rem; position:relative; }
+.gen-icon {
+  width:44px; height:44px; border-radius:1rem; flex-shrink:0;
+  background:linear-gradient(135deg, var(--pink), var(--violet));
+  display:flex; align-items:center; justify-content:center; font-size:20px;
+}
+.gen-title { font-family:'Outfit',sans-serif; font-weight:700; font-size:1.1rem; color:white; margin-bottom:3px; }
+.gen-sub   { font-size:0.82rem; color:rgba(255,255,255,0.38); }
+
+.gen-badge {
+  display:none; align-items:center; gap:8px;
+  background:rgba(120,75,160,0.18); border:1px solid rgba(120,75,160,0.3);
+  border-radius:0.75rem; padding:8px 14px;
+  font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:600;
+  color:#c4a8e8; margin-bottom:1.25rem;
+}
+.gen-badge.gb-show { display:flex; }
+
+.gen-lbl {
+  font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); margin-bottom:8px;
+}
+.gen-textarea {
+  width:100%; min-height:100px; resize:vertical;
+  padding:14px 16px;
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+  border-radius:1rem; color:white;
+  font-family:'Outfit',sans-serif; font-size:0.9rem; line-height:1.7;
+  transition:border-color 0.15s;
+}
+.gen-textarea:focus { outline:none; border-color:rgba(255,60,172,0.5); }
+.gen-textarea::placeholder { color:rgba(255,255,255,0.2); }
+
+.tone-row { display:flex; gap:8px; flex-wrap:wrap; margin:1.25rem 0; }
+.tone-btn {
+  padding:6px 16px; border-radius:99px;
+  border:1px solid rgba(255,255,255,0.1);
+  font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:700; letter-spacing:0.04em; text-transform:uppercase;
+  cursor:pointer; background:transparent; color:rgba(255,255,255,0.4);
+  transition:all 0.15s;
+}
+.tone-btn:hover  { border-color:var(--cyan); color:var(--cyan); }
+.tone-btn.tb-active { background:var(--cyan); border-color:var(--cyan); color:var(--dark); }
+
+.gen-submit {
+  width:100%; padding:14px;
+  background:linear-gradient(135deg, var(--pink), var(--violet), var(--blue));
+  color:white; border:none; border-radius:3rem;
+  font-family:'Outfit',sans-serif; font-size:0.95rem; font-weight:700;
+  cursor:pointer; letter-spacing:0.02em;
+  box-shadow:0 8px 28px rgba(255,60,172,0.3);
+  transition:transform 0.18s, box-shadow 0.18s, opacity 0.15s;
+}
+.gen-submit:hover  { transform:translateY(-2px); box-shadow:0 14px 40px rgba(255,60,172,0.45); }
+.gen-submit:active { transform:translateY(0); }
+.gen-submit:disabled { opacity:0.4; cursor:not-allowed; transform:none; box-shadow:none; }
+
+.gen-output { display:none; margin-top:1.75rem; }
+.out-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.out-label { font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.3); }
+.out-copy { font-family:'Outfit',sans-serif; font-size:0.82rem; font-weight:700; color:var(--cyan); cursor:pointer; background:none; border:none; padding:0; }
+.out-copy:hover { text-decoration:underline; }
+.out-box {
+  background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1);
+  border-radius:1rem; padding:18px;
+  font-family:'Outfit',sans-serif; font-size:0.9rem; color:rgba(255,255,255,0.82);
+  line-height:1.8; white-space:pre-wrap; min-height:120px;
+}
+.out-actions { display:flex; gap:8px; margin-top:10px; }
+.out-action {
+  flex:1; padding:10px;
+  border:1px solid rgba(255,255,255,0.08); border-radius:0.75rem;
+  font-family:'Outfit',sans-serif; font-size:0.8rem; font-weight:700;
+  letter-spacing:0.03em; text-transform:uppercase;
+  cursor:pointer; background:transparent; color:rgba(255,255,255,0.35);
+  transition:all 0.15s;
+}
+.out-action:hover { border-color:var(--pink); color:var(--pink); }
+
+/* loading dots */
+.ldots span { animation:blink 1.2s infinite; }
+.ldots span:nth-child(2) { animation-delay:0.2s; }
+.ldots span:nth-child(3) { animation-delay:0.4s; }
+
+/* add project modal */
+.lab-modal-overlay {
+  display:none; position:fixed; inset:0;
+  background:rgba(12,10,24,0.75); backdrop-filter:blur(8px);
+  z-index:9999; align-items:center; justify-content:center; padding:1.5rem;
+}
+.lab-modal-overlay.lm-open { display:flex; }
+.lab-modal {
+  background:#13102a; border:1px solid rgba(255,255,255,0.1);
+  border-radius:1.8rem; padding:2.2rem;
+  width:100%; max-width:460px; position:relative;
+  animation:slideUp 0.22s ease;
+}
+.lm-title {
+  font-family:'Outfit',sans-serif; font-weight:700; font-size:1.1rem;
+  color:white; margin-bottom:1.6rem;
+}
+.lm-close {
+  position:absolute; top:1.4rem; right:1.4rem;
+  background:none; border:none; font-size:1.4rem; color:rgba(255,255,255,0.3); cursor:pointer; line-height:1;
+}
+.lm-close:hover { color:white; }
+.lm-field { margin-bottom:1.1rem; }
+.lm-label {
+  display:block;
+  font-size:0.7rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase;
+  color:rgba(255,255,255,0.3); margin-bottom:7px;
+}
+.lm-input, .lm-textarea, .lm-select {
+  width:100%; padding:11px 14px;
+  background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1);
+  border-radius:0.85rem; color:white;
+  font-family:'Outfit',sans-serif; font-size:0.88rem;
+  transition:border-color 0.15s;
+}
+.lm-input:focus, .lm-textarea:focus, .lm-select:focus { outline:none; border-color:rgba(255,60,172,0.5); }
+.lm-input::placeholder, .lm-textarea::placeholder { color:rgba(255,255,255,0.2); }
+.lm-textarea { min-height:80px; resize:vertical; }
+.lm-select { appearance:none; }
+.lm-select option { background:#13102a; }
+.lm-chips { display:flex; gap:8px; }
+.lm-chip {
+  padding:6px 16px; border-radius:99px;
+  border:1px solid rgba(255,255,255,0.1);
+  font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
+  cursor:pointer; background:transparent; color:rgba(255,255,255,0.35);
+  transition:all 0.15s;
+}
+.lm-chip:hover { border-color:var(--cyan); color:var(--cyan); }
+.lm-chip.lm-active { background:var(--violet); border-color:var(--violet); color:white; }
+.lm-actions { display:flex; gap:10px; margin-top:1.75rem; }
+.lm-cancel {
+  flex:1; padding:12px;
+  border:1px solid rgba(255,255,255,0.1); border-radius:3rem;
+  font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:600;
+  cursor:pointer; background:transparent; color:rgba(255,255,255,0.45);
+  transition:border-color 0.15s;
+}
+.lm-cancel:hover { border-color:rgba(255,255,255,0.3); }
+.lm-save {
+  flex:2; padding:12px;
+  background:linear-gradient(135deg, var(--pink), var(--violet));
+  border:none; border-radius:3rem;
+  font-family:'Outfit',sans-serif; font-size:0.9rem; font-weight:700;
+  color:white; cursor:pointer; transition:opacity 0.15s;
+  box-shadow:0 6px 20px rgba(255,60,172,0.3);
+}
+.lm-save:hover { opacity:0.88; }
+
+@media(max-width:900px){
+  #lab { padding:5rem 1.5rem; }
+  .lab-grid { grid-template-columns:1fr; }
+  .gen-panel { padding:1.5rem; }
+  .out-actions { flex-direction:column; }
+}
+
 .spinning-ring {
   position:absolute;
   width:400px; height:400px;
@@ -514,6 +814,7 @@ footer {
     <li><a href="#experience">Experience</a></li>
     <li><a href="#achievements">Awards</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#lab">Lab ✦</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -683,6 +984,133 @@ footer {
   </div>
 </section>
 
+<!-- LAB & EXPERIMENTS -->
+<section id="lab">
+  <div class="lab-inner">
+
+    <div class="lab-eyebrow"><span class="lab-dot"></span> Lab &amp; Experiments</div>
+    <h2 class="lab-title">Things I'm <em>building</em> &amp; exploring</h2>
+    <p class="lab-desc">Side projects, experiments and use cases across data analytics, AI, marketing and creative tech — where curiosity meets execution.</p>
+
+    <div class="lab-filters">
+      <button class="lab-filter lf-active" onclick="labFilter('all',this)">All</button>
+      <button class="lab-filter" onclick="labFilter('ai',this)">AI</button>
+      <button class="lab-filter" onclick="labFilter('data',this)">Data</button>
+      <button class="lab-filter" onclick="labFilter('marketing',this)">Marketing</button>
+      <button class="lab-filter" onclick="labFilter('creative',this)">Creative</button>
+    </div>
+
+    <div class="lab-grid" id="labGrid">
+      <div class="lab-card" data-cat="data" onclick="labSelect(this,'LinkedIn Analytics Dashboard','Interactive Tableau Public dashboard visualising connection growth, industry mix, top companies and skill endorsements from exported LinkedIn data.')">
+        <span class="lc-tag lt-data">Data</span>
+        <div class="lc-title">LinkedIn Analytics Dashboard</div>
+        <div class="lc-body">Tableau Public dashboard showing connection growth, industry mix and skill endorsements from LinkedIn export data.</div>
+        <div class="lc-footer"><span class="lc-dot ld-building"></span><span class="lc-status">In progress</span></div>
+      </div>
+      <div class="lab-card" data-cat="ai" onclick="labSelect(this,'AI LinkedIn Post Generator','A portfolio-embedded AI tool that turns project updates into tailored LinkedIn posts in multiple tones — professional, conversational, storytelling, thought leader.')">
+        <span class="lc-tag lt-ai">AI</span>
+        <div class="lc-title">AI LinkedIn Post Generator</div>
+        <div class="lc-body">Portfolio-embedded tool that converts project updates into publish-ready LinkedIn posts using AI.</div>
+        <div class="lc-footer"><span class="lc-dot ld-building"></span><span class="lc-status">In progress</span></div>
+      </div>
+      <div class="lab-card" data-cat="marketing" onclick="labSelect(this,'Personal Brand Analytics','Looker Studio dashboard tracking content performance, reach and engagement across LinkedIn and Instagram — turning social data into actionable insights.')">
+        <span class="lc-tag lt-marketing">Marketing</span>
+        <div class="lc-title">Personal Brand Analytics</div>
+        <div class="lc-body">Looker Studio dashboard tracking reach, engagement and content performance across platforms.</div>
+        <div class="lc-footer"><span class="lc-dot ld-planned"></span><span class="lc-status">Planned</span></div>
+      </div>
+      <div class="lab-card" data-cat="creative" onclick="labSelect(this,'Data Storytelling Series','A creative series turning interesting public datasets into visual narratives — combining data analytics, design and storytelling.')">
+        <span class="lc-tag lt-creative">Creative</span>
+        <div class="lc-title">Data Storytelling Series</div>
+        <div class="lc-body">Turning public datasets into visual stories — combining analytics, design and narrative.</div>
+        <div class="lc-footer"><span class="lc-dot ld-planned"></span><span class="lc-status">Planned</span></div>
+      </div>
+    </div>
+
+    <button class="lab-add-btn" onclick="openLabModal()">
+      <span style="font-size:1.1rem">+</span> Add a project
+    </button>
+
+    <hr class="lab-divider" />
+
+    <div class="gen-panel">
+      <div class="gen-head">
+        <div class="gen-icon">✦</div>
+        <div>
+          <div class="gen-title">LinkedIn post generator</div>
+          <div class="gen-sub">Select a project above, describe your update, get a post</div>
+        </div>
+      </div>
+
+      <div class="gen-badge" id="genBadge"><span>✦</span><span id="genBadgeText"></span></div>
+
+      <div class="gen-lbl">What's the update?</div>
+      <textarea class="gen-textarea" id="genUpdate" placeholder="e.g. Just finished the connection growth chart in Tableau using calculated fields for cumulative growth. Still figuring out dynamic filters..."></textarea>
+
+      <div class="gen-lbl" style="margin-top:1.25rem;">Tone</div>
+      <div class="tone-row">
+        <button class="tone-btn tb-active" onclick="setTone('professional',this)">Professional</button>
+        <button class="tone-btn" onclick="setTone('conversational',this)">Conversational</button>
+        <button class="tone-btn" onclick="setTone('storytelling',this)">Storytelling</button>
+        <button class="tone-btn" onclick="setTone('thought leader',this)">Thought leader</button>
+      </div>
+
+      <button class="gen-submit" id="genSubmit" onclick="generatePost()">Generate LinkedIn post</button>
+
+      <div class="gen-output" id="genOutput">
+        <div class="out-toolbar">
+          <span class="out-label">Your post</span>
+          <button class="out-copy" onclick="copyPost()">Copy</button>
+        </div>
+        <div class="out-box" id="outBox"></div>
+        <div class="out-actions">
+          <button class="out-action" onclick="generatePost()">Regenerate</button>
+          <button class="out-action" onclick="makeShorter()">Make shorter</button>
+          <button class="out-action" onclick="getHashtags()">Get hashtags</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ADD PROJECT MODAL -->
+<div class="lab-modal-overlay" id="labModal" onclick="closeLabModalOutside(event)">
+  <div class="lab-modal">
+    <div class="lm-title">Add a project</div>
+    <button class="lm-close" onclick="closeLabModal()">×</button>
+    <div class="lm-field">
+      <label class="lm-label" for="lm-name">Project name</label>
+      <input class="lm-input" id="lm-name" type="text" placeholder="e.g. Sentiment analysis tool" />
+    </div>
+    <div class="lm-field">
+      <label class="lm-label" for="lm-desc">Description</label>
+      <textarea class="lm-textarea" id="lm-desc" placeholder="What are you building or exploring?"></textarea>
+    </div>
+    <div class="lm-field">
+      <label class="lm-label" for="lm-cat">Category</label>
+      <select class="lm-select" id="lm-cat">
+        <option value="ai">AI</option>
+        <option value="data">Data</option>
+        <option value="marketing">Marketing</option>
+        <option value="creative">Creative</option>
+      </select>
+    </div>
+    <div class="lm-field">
+      <label class="lm-label">Status</label>
+      <div class="lm-chips">
+        <button class="lm-chip lm-active" onclick="setLabStatus('building',this)">Building</button>
+        <button class="lm-chip" onclick="setLabStatus('live',this)">Live</button>
+        <button class="lm-chip" onclick="setLabStatus('planned',this)">Planned</button>
+      </div>
+    </div>
+    <div class="lm-actions">
+      <button class="lm-cancel" onclick="closeLabModal()">Cancel</button>
+      <button class="lm-save" onclick="saveLabProject()">Add project</button>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="c-blob"></div>
@@ -691,7 +1119,7 @@ footer {
     <h2 class="c-h"><span class="grad1">Let's make<br>something great</span></h2>
     <p class="c-sub">Whether it's a job opportunity, a collaboration or just a friendly chat — my inbox is always open!</p>
     <div class="c-links">
-      <a href="mailto:ruzariorelcy@gmail.com" class="cl cl-main">📩 Email Me</a>
+      <a href="/cdn-cgi/l/email-protection#fc8e89869d8e95938e99909f85bc9b919d9590d29f9391" class="cl cl-main">📩 Email Me</a>
       <a href="tel:+61468597129" class="cl cl-ghost">📞 Call Me</a>
       <a href="https://www.linkedin.com/in/relcy-ruzario/" target="_blank" class="cl cl-ghost">💼 LinkedIn</a>
       <a href="https://github.com/Relcy" target="_blank" class="cl cl-ghost">🐙 GitHub</a>
@@ -701,10 +1129,178 @@ footer {
 
 <footer>© 2026 Relcy Ruzario · Crafted with 💜 in Adelaide, SA 🇦🇺</footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach((e,i) => {
-    if(e.isIntersecting){
-      e.target.style.opacity='1';
-      e.target.style.transform='translateY(0)';
- 
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const obs = new IntersectionObserver(  (entries) => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); },
+  { threshold: 0.12 }
+);
+document.querySelectorAll('section, .sk, .aw, .pc, .ti, .stat').forEach(el => obs.observe(el));
+</script>
+
+<script>
+/* ── LAB SECTION JS ── */
+let labSelectedProject = null;
+let labTone   = 'professional';
+let labStatus = 'building';
+let labLastPost = '';
+
+function labFilter(cat, btn) {
+  document.querySelectorAll('.lab-filter').forEach(b => b.classList.remove('lf-active'));
+  btn.classList.add('lf-active');
+  document.querySelectorAll('.lab-card').forEach(c => {
+    c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+function labSelect(card, name, desc) {
+  document.querySelectorAll('.lab-card').forEach(c => c.classList.remove('lc-selected'));
+  card.classList.add('lc-selected');
+  labSelectedProject = { name, desc };
+  const badge = document.getElementById('genBadge');
+  document.getElementById('genBadgeText').textContent = name;
+  badge.classList.add('gb-show');
+}
+
+function setTone(tone, btn) {
+  labTone = tone;
+  document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('tb-active'));
+  btn.classList.add('tb-active');
+}
+
+async function generatePost() {
+  const update = document.getElementById('genUpdate').value.trim();
+  if (!update) { document.getElementById('genUpdate').focus(); return; }
+
+  const btn = document.getElementById('genSubmit');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="ldots">Writing<span>.</span><span>.</span><span>.</span></span>';
+
+  const output = document.getElementById('genOutput');
+  const box    = document.getElementById('outBox');
+  output.style.display = 'block';
+  box.textContent = '';
+
+  const projectCtx = labSelectedProject
+    ? 'Project: ' + labSelectedProject.name + '\nProject description: ' + labSelectedProject.desc + '\n\n'
+    : '';
+
+  const prompt = 'You are a LinkedIn content writer for Relcy, a recent Master of Data Analytics graduate from the University of Adelaide (completed December 2025, Marketing & Business Management minor). She has a strong personal brand at the intersection of data, tech, and marketing. She was nominated for the 7 News Young Achiever\'s Award 2026 and won Social Media Co-ordinator of the Year 2025. She works in data analytics and marketing.\n\n'
+    + projectCtx
+    + 'Update to turn into a LinkedIn post: "' + update + '"\n\n'
+    + 'Write a ' + labTone + ' LinkedIn post. Requirements:\n'
+    + '- Authentic voice — smart, ambitious, curious, relatable\n'
+    + '- First line must stop the scroll (no "I\'m excited to share")\n'
+    + '- Include 1-2 concrete insights or learnings\n'
+    + '- Short paragraphs for mobile reading\n'
+    + '- End with a question or soft call-to-action\n'
+    + '- 150-220 words. No hashtags.\n\n'
+    + 'Return ONLY the post text. No intro, no explanation.';
+
+  try {
+    const res  = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.map(i => i.text || '').join('') || 'Something went wrong — please try again.';
+    box.textContent = text;
+    labLastPost = text;
+  } catch(e) {
+    box.textContent = 'Connection error. Please try again.';
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Generate LinkedIn post';
+}
+
+async function makeShorter() {
+  if (!labLastPost) return;
+  document.getElementById('genUpdate').value = labLastPost + '\n\n[Rewrite: shorter, punchier, under 140 words, stronger hook, same voice]';
+  await generatePost();
+}
+
+async function getHashtags() {
+  if (!labLastPost) return;
+  const box = document.getElementById('outBox');
+  const saved = labLastPost;
+  box.textContent = 'Fetching hashtags…';
+  const prompt = 'Suggest 6-8 LinkedIn hashtags for a data analytics + marketing professional in Australia based on this post. Return ONLY the hashtags separated by spaces.\n\nPost:\n' + saved;
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 200,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await res.json();
+    const tags = data.content?.map(i => i.text || '').join('') || '';
+    box.textContent = saved + '\n\n' + tags;
+    labLastPost = box.textContent;
+  } catch { box.textContent = saved + '\n\n(Could not fetch hashtags)'; }
+}
+
+function copyPost() {
+  if (!labLastPost) return;
+  navigator.clipboard.writeText(labLastPost).then(() => {
+    const btn = document.querySelector('.out-copy');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+function openLabModal() {
+  document.getElementById('labModal').classList.add('lm-open');
+  setTimeout(() => document.getElementById('lm-name').focus(), 100);
+}
+function closeLabModal() {
+  document.getElementById('labModal').classList.remove('lm-open');
+}
+function closeLabModalOutside(e) {
+  if (e.target === document.getElementById('labModal')) closeLabModal();
+}
+function setLabStatus(s, btn) {
+  labStatus = s;
+  document.querySelectorAll('.lm-chip').forEach(b => b.classList.remove('lm-active'));
+  btn.classList.add('lm-active');
+}
+function saveLabProject() {
+  const name = document.getElementById('lm-name').value.trim();
+  const desc = document.getElementById('lm-desc').value.trim();
+  const cat  = document.getElementById('lm-cat').value;
+  if (!name) { document.getElementById('lm-name').focus(); return; }
+
+  const tagMap = { ai:'lt-ai', data:'lt-data', marketing:'lt-marketing', creative:'lt-creative' };
+  const tagLbl = { ai:'AI', data:'Data', marketing:'Marketing', creative:'Creative' };
+  const dotMap = { building:'ld-building', live:'ld-live', planned:'ld-planned' };
+  const sLbl   = { building:'In progress', live:'Live', planned:'Planned' };
+  const safeDesc = desc || 'No description yet.';
+
+  const card = document.createElement('div');
+  card.className = 'lab-card';
+  card.dataset.cat = cat;
+  card.onclick = function() { labSelect(card, name, safeDesc); };
+  card.innerHTML = '<span class="lc-tag ' + tagMap[cat] + '">' + tagLbl[cat] + '</span>'
+    + '<div class="lc-title">' + name + '</div>'
+    + '<div class="lc-body">' + safeDesc + '</div>'
+    + '<div class="lc-footer"><span class="lc-dot ' + dotMap[labStatus] + '"></span><span class="lc-status">' + sLbl[labStatus] + '</span></div>';
+
+  document.getElementById('labGrid').appendChild(card);
+  closeLabModal();
+  document.getElementById('lm-name').value = '';
+  document.getElementById('lm-desc').value = '';
+  document.getElementById('lm-cat').value  = 'ai';
+  document.querySelectorAll('.lm-chip').forEach(b => b.classList.remove('lm-active'));
+  document.querySelector('.lm-chip').classList.add('lm-active');
+  labStatus = 'building';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLabModal(); });
+</script>
+</body>
+</html>
